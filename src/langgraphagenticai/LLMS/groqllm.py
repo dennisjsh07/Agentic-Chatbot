@@ -14,10 +14,11 @@ class GroqLLM:
             env_api_key = os.getenv("GROQ_API_KEY", "")
 
             if groq_api_key == "" and env_api_key == "":
-                st.error("Please Enter the Groq API KEY")
+                raise ValueError("Please Enter the Groq API KEY")
 
             llm = ChatGroq(api_key=groq_api_key, model=selected_groq_model)
 
+            return llm
+
         except Exception as e:
             raise ValueError(f"Error Ocuured With Exception : {e}")
-        return llm
